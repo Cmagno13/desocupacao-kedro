@@ -1,0 +1,43 @@
+# Snapshot versionado da tabela SIDRA 4099 (ver src/desocupacao_kedro/refresh.py).
+# Tudo e lido como texto: a tipagem acontece no no clean_unemployment.
+sidra_raw:
+  type: pandas.CSVDataset
+  filepath: data/01_raw/sidra_4099_uf.csv
+  load_args:
+    dtype: str
+    keep_default_na: false
+
+unemployment:
+  type: pandas.CSVDataset
+  filepath: data/02_intermediate/unemployment.csv
+  load_args:
+    parse_dates: [period]
+
+model_input:
+  type: pandas.CSVDataset
+  filepath: data/03_primary/model_input.csv
+  load_args:
+    parse_dates: [period]
+
+model:
+  type: pickle.PickleDataset
+  filepath: data/06_models/model.pkl
+
+predictions:
+  type: pandas.CSVDataset
+  filepath: data/08_reporting/predictions.csv
+  load_args:
+    parse_dates: [period]
+
+metrics:
+  type: json.JSONDataset
+  filepath: data/08_reporting/metrics.json
+  save_args:
+    indent: 2
+    ensure_ascii: false
+
+actual_vs_predicted_plot:
+  type: matplotlib.MatplotlibDataset
+  filepath: data/08_reporting/actual_vs_predicted.png
+  save_args:
+    dpi: 150

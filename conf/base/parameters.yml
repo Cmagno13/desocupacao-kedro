@@ -1,0 +1,12 @@
+# Defasagens (em trimestres) usadas como atributos: trimestre anterior,
+# dois trimestres antes e o mesmo trimestre do ano anterior.
+lags: [1, 2, 4]
+
+# Quantos trimestres finais ficam reservados para teste (divisao cronologica).
+test_quarters: 8
+
+# UFs exibidas no grafico de observado x previsto.
+report_ufs:
+  - São Paulo
+  - Bahia
+  - Santa Catarina

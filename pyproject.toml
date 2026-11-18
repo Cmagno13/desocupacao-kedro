@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "desocupacao_kedro"
+description = "Pipeline Kedro que preve a taxa de desocupacao trimestral (PNAD Continua) por UF."
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Carlos Magno Ribeiro Francisco" }]
+requires-python = ">=3.12,<3.13"
+dynamic = ["version"]
+dependencies = [
+    "kedro~=1.8.0",
+    "kedro-datasets[pandas-csvdataset,json-jsondataset,pickle-pickledataset,matplotlib-matplotlibdataset]>=9.0",
+    "pandas>=2.2",
+    "scikit-learn>=1.5",
+    "matplotlib>=3.9",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8",
+    "ruff>=0.6",
+]
+
+[project.scripts]
+desocupacao-kedro = "desocupacao_kedro.__main__:main"
+
+[tool.setuptools.dynamic.version]
+attr = "desocupacao_kedro.__version__"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+namespaces = false
+
+[tool.kedro]
+package_name = "desocupacao_kedro"
+project_name = "desocupacao-kedro"
+kedro_init_version = "1.8.0"
+source_dir = "src"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B"]
