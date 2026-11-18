@@ -133,8 +133,6 @@ a tabela.
   maior nas UFs menores; essa incerteza é ignorada.
 - O snapshot é estático: o IBGE pode revisar a série, e os números acima valem
   para o arquivo versionado neste repositório.
-- O workflow de CI (`.github/workflows/ci.yml`) foi escrito mas nunca executado
-  no GitHub; os mesmos comandos foram rodados localmente.
 
 ## Fonte dos dados
 
